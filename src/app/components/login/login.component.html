@@ -1,0 +1,63 @@
+<body id="myId">
+  <div *ngIf="loading">
+    <app-spinner></app-spinner>
+  </div>
+  <section *ngIf="!loading" class="register-account">
+    <div class="signform">
+      <div class="left">
+        <a
+          [routerLink]="['/register']"
+          style="float: right; margin-right: 35px; font-size: 0.9em"
+          class="bts-a"
+          >¿No tienes una cuenta? ¡Suscribete!</a
+        >
+        <div class="bts">
+          <a href="#" class="fblogin social"
+            ><i class="fa-brands fa-square-facebook"></i
+            ><span>Iniciar sesión con Facebook</span></a
+          >
+          <a href="#" class="twlogin social"
+            ><i class="fa-brands fa-square-twitter"></i
+            ><span>Iniciar sesión con Twitter</span></a
+          >
+          <a href="#" class="gplogin social"
+            ><i class="fa-brands fa-square-google-plus"></i
+            ><span>Iniciar sesión con Google</span></a
+          >
+        </div>
+      </div>
+      <div class="right">
+        <div class="headit">
+          <h4>Ingrese A Su Cuenta</h4>
+        </div>
+        <div class="form" [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+          <form class="login-form" id="login-form">
+            <input
+              type="text"
+              placeholder="Usuario"
+              class="form-control"
+              formControlName="email"
+            />
+            <input
+              type="password"
+              placeholder="Contraseña"
+              class="form-control"
+              formControlName="password"
+            />
+            <input
+              class="subbt"
+              type="submit"
+              value="Iniciar sesión"
+              style="border: none"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="justify-content-center">
+      <i class="fa-brands fa-google-play"></i>
+      <span> : </span> 
+      <a href="https://drive.google.com/drive/folders/1AXxAtgsK8ST2F2svSi6TBV26hEcdDeHx?usp=sharing" target="_blank" >descargar APK</a>  
+    </div>
+  </section>
+</body>
