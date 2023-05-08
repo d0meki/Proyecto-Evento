@@ -62,13 +62,13 @@ export class EventofotosComponent implements OnInit {
 
           this.myApi.reconocimientoFoto(downLoadURL).subscribe(response => {
              this.faceRespuesta = response;
-           // push a fluter siempre y cuando este vacio 
+           // push a fluter siempre y cuando este vacio
               console.log(this.faceRespuesta);
             if (this.faceRespuesta.body!.length != 0) {
               this.userService.getAllUsers().then(response => {
                 this.allUsers = response
                 for (const user of this.allUsers!) {
-                  if (user.id === this.faceRespuesta.body![0].id) {
+                  if (user.uuid === this.faceRespuesta.body![0].uuid) {
                       if (user.phoneToken != "noToken") {
                         this.myApi.enviarNotificacion(user.phoneToken,downLoadURL,this.uid).subscribe(res =>{
                           console.log(res);

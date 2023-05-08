@@ -4,10 +4,11 @@ export interface Face {
 }
 
 export interface Body {
-    id?:          number;
-    name?:        string;
-    probability?: number;
-    rectangle?:   Rectangle;
+  name?:        string;
+  probability?: number;
+  rectangle?:   Rectangle;
+  uuid?:        string;
+  collections?: any[];
 }
 
 export interface Rectangle {

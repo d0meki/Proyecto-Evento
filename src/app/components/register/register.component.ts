@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
   onSubmit(url: any) {
     this.userService.registerUsuarioFireAuth(this.formReg.value)
       .then(response => {
-        this.userService.registerUsuarioFireStore(this.formReg.value, response.user.uid, url)
+        this.userService.registerUsuarioFireStore(this.formReg.value, response.user.uid, url,this.file)
         this.zone.run(() => {
           this.toastr.success('Register', 'Ha Registrado Correctamente')
           this.router.navigate(['/login']);
@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
     },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downLoadURL) => {
-          // console.log('File available at', downLoadURL); 
+          // console.log('File available at', downLoadURL);
           this.onSubmit(downLoadURL);
         })
       }

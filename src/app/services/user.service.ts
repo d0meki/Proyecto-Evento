@@ -35,7 +35,7 @@ export class UserService {
   registerUsuarioFireAuth(authUser: AuthUser) {
     return createUserWithEmailAndPassword(this.auth, authUser.email, authUser.password);
   }
-  registerUsuarioFireStore(usuario: Usuario, uid: any, urlavatar: any) {
+  registerUsuarioFireStore(usuario: Usuario, uid: any, urlavatar: any, file:any) {
     usuario.avatar = urlavatar;
     usuario.fotos = [];
     usuario.ventas = [];
@@ -48,9 +48,9 @@ export class UserService {
 
     //AQUI REGISTRAMOS LA CARA EN EL LUXAND
 
-    this.myApi.registrarCara(usuario.nombre!, usuario.avatar!).subscribe(response => {
+    this.myApi.registrarCara(usuario.nombre!, file).subscribe(response => {
       this.regFace = response as RegisterFace;
-      usuario.id = this.regFace.body.id;
+      usuario.uuid = this.regFace.body.uuid;
       const refDoc = doc(this.firestore, `usuarios/${uid}`)
       return setDoc(refDoc, usuario);
     })

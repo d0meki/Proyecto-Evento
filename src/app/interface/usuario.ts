@@ -3,6 +3,7 @@ import { Venta } from "./ventas";
 export interface Usuario {
     idField?:string;
     id?: number;
+    uuid?: string;
     email?: string;
     password?: string;
     nombre?: string;

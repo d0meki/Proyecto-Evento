@@ -4,9 +4,13 @@ export interface RegisterFace {
 }
 
 export interface BodyFace {
-    status:  string;
-    uuid:    string;
-    id:      number;
-    message: string;
-    url:     string;
+  status:      string;
+  uuid:        string;
+  name:        string;
+  faces:       Face[];
+  collections: any[];
+}
+export interface Face {
+  uuid: string;
+  url:  string;
 }
