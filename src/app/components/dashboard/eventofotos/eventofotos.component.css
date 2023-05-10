@@ -1,8 +1,3 @@
-*{
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 .galeria{
     font-family: 'open sans';
@@ -15,8 +10,8 @@
 }
 
 .linea{
-    border-top: 5px solid #0077C0;
-    margin-bottom: 40px;
+    border-top: 5px solid #dfee0cc0;
+    margin-bottom: 20px;
 }
 
 .contenedor-imagenes{

@@ -1,5 +1,5 @@
-html,body { 
-	height: 100%; 
+html,body {
+	height: 100%;
 }
 
 .global-container{
@@ -24,7 +24,7 @@ form{
 }
 
 
-.login-form{ 
+.login-form{
 	width:330px;
 	margin:20px;
 }

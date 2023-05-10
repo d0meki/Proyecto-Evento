@@ -25,8 +25,8 @@ import { ToastrService } from 'ngx-toastr';
 export class PagosService {
   usuario!: AccesToken
   user!: Usuario
-  evento!:Evento
-  addVentas!:Venta[] 
+  evento!: Evento
+  addVentas!: Venta[]
   constructor(private firestore: Firestore,
     private auth: Auth,
     private router: Router,
@@ -123,34 +123,38 @@ export class PagosService {
         console.log(error);
       })
   }
-  async pagarFotografo(uidEvento:string,venta:any,fotos: string[]){
-     const docRef = doc(this.firestore, 'eventos', uidEvento);
-     const docSnap = await getDoc(docRef);
-     if (docSnap.exists()) {
+  async pagarFotografo(uidEvento: string, venta: any, fotos: string[]) {
+    console.log(uidEvento);
+
+    const docRef = doc(this.firestore, 'eventos', uidEvento);
+
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
       this.evento = docSnap.data();
+      console.log(this.evento.fotografo);
       const docRefe = doc(this.firestore, 'usuarios', this.evento.fotografo!);
       const docSnaps = await getDoc(docRefe);
-        if (docSnaps.exists()) {
-          this.user = docSnaps.data();
-          if (this.user.ventas?.length != 0) {
-            this.user.ventas!.forEach(element => {
-              venta.push(element);
-            });
-          }
-          const data = {
-            ventas: venta
-          }
-          updateDoc(docRefe, data)
-        .then(docRef => {
-          this.pagarFotos(fotos);
-          console.log("Se ha editado satisfactoriamente");
-        })
-        .catch(error => {
-          console.log(error);
-        })
-        } else {
-          console.log("No such document!");
+      if (docSnaps.exists()) {
+        this.user = docSnaps.data();
+        if (this.user.ventas?.length != 0) {
+          this.user.ventas!.forEach(element => {
+            venta.push(element);
+          });
         }
+        const data = {
+          ventas: venta
+        }
+        updateDoc(docRefe, data)
+          .then(docRef => {
+            this.pagarFotos(fotos);
+            console.log("Se ha editado satisfactoriamente");
+          })
+          .catch(error => {
+            console.log(error);
+          })
+      } else {
+        console.log("No such document!");
+      }
     } else {
       console.log("No such document!");
     }

@@ -17,6 +17,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PagophotographerComponent,
     PagoorganizerComponent,
     ConfirmarComponent,
-    FilterPipe
+    FilterPipe,
+    SidebarComponent
   ],
   imports: [
     CommonModule,

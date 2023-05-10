@@ -9,9 +9,13 @@ export class MyapiService {
   // private apiFace = "https://rest-server-domeki.herokuapp.com/api/luxand/createface"
   // private apiNotifier = "https://rest-server-domeki.herokuapp.com/api/luxand/notification"
 
-  private apiUrl = "http://localhost:8080/api/luxand"
-  private apiFace = "http://localhost:8080/api/luxand/createface"
-  private apiNotifier = "http://localhost:8080/api/luxand/notification"
+  // private apiUrl = "http://localhost:8080/api/luxand"
+  // private apiFace = "http://localhost:8080/api/luxand/createface"
+  // private apiNotifier = "http://localhost:8080/api/luxand/notification"
+
+  private apiUrl = "https://luxandservice-production.up.railway.app/api/luxand"
+  private apiFace = "https://luxandservice-production.up.railway.app/api/luxand/createface"
+  private apiNotifier = "https://luxandservice-production.up.railway.app/api/luxand/notification"
   constructor(private http: HttpClient) { }
 
   reconocimientoFoto(url: any) {

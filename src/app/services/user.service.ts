@@ -28,6 +28,7 @@ export class UserService {
   fotografos!: Usuario[];
   allUsers!: Usuario[];
   regFace!: RegisterFace;
+  userFirebase!: Usuario;
   constructor(private router: Router, private auth: Auth, private firestore: Firestore, private myApi: MyapiService) {
     this.fotografos = [];
     this.allUsers = [];
@@ -35,24 +36,47 @@ export class UserService {
   registerUsuarioFireAuth(authUser: AuthUser) {
     return createUserWithEmailAndPassword(this.auth, authUser.email, authUser.password);
   }
-  registerUsuarioFireStore(usuario: Usuario, uid: any, urlavatar: any, file:any) {
-    usuario.avatar = urlavatar;
-    usuario.fotos = [];
-    usuario.ventas = [];
-    usuario.fotografo = false;
-    usuario.adm = false;
-    usuario.cliente = true;
-    usuario.organizador = false;
-    usuario.disponible = false;
-    usuario.phoneToken = "noToken";
+  registerUsuarioFireStore(usuario: Usuario, uid: any, urlavatar: any, file: any) {
+    this.userFirebase = usuario;
+    this.userFirebase.avatar = urlavatar;
+    this.userFirebase.fotos = [];
+    this.userFirebase.ventas = [];
+    switch (usuario.rol) {
+      case "1":
+        this.userFirebase.cliente = true;
+        this.userFirebase.fotografo = false;
+        this.userFirebase.organizador = false;
+        this.userFirebase.adm = false;
+        this.userFirebase.disponible = false;
+        break;
+      case "2":
+        this.userFirebase.cliente = false;
+        this.userFirebase.fotografo = true;
+        this.userFirebase.organizador = false;
+        this.userFirebase.adm = false;
+        this.userFirebase.disponible = true;
+        break;
+      case "3":
+        this.userFirebase.cliente = false;
+        this.userFirebase.fotografo = false;
+        this.userFirebase.organizador = true;
+        this.userFirebase.adm = false;
+        this.userFirebase.disponible = false;
+        break;
+      default:
+        break;
+    }
+    this.userFirebase.phoneToken = "noToken";
+
+    // console.log(this.userFirebase);
+
 
     //AQUI REGISTRAMOS LA CARA EN EL LUXAND
-
-    this.myApi.registrarCara(usuario.nombre!, file).subscribe(response => {
+    this.myApi.registrarCara(this.userFirebase.nombre!, file).subscribe(response => {
       this.regFace = response as RegisterFace;
-      usuario.uuid = this.regFace.body.uuid;
+      this.userFirebase.uuid = this.regFace.body.uuid;
       const refDoc = doc(this.firestore, `usuarios/${uid}`)
-      return setDoc(refDoc, usuario);
+      return setDoc(refDoc, this.userFirebase);
     })
   }
 

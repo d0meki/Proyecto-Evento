@@ -1,116 +1,98 @@
-<div *ngIf="loading">
+<div *ngIf="loading" class="container position-absolute top-50 start-50 translate-middle text-center">
   <app-spinner></app-spinner>
 </div>
-<div class="container"  *ngIf="!loading">
-
-  <div class="col2">
-    <div class="container">
-      <div class="abs-center">
-        <div class="row">
-          <div class="col-sm-5 col-md-8" *ngFor="let foto of fotos">
-            <a class="thumbnail">
-              <img
-                class="miniatura img-thumbnail rounded float-start"
-                src="{{ foto }}"
-              />
-            </a>
+<div *ngIf="!loading" class="container position-absolute top-50 start-50 translate-middle text-center">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          Fotos Seleccionadas
+        </div>
+        <div class="card-body">
+          <div class="container text-center">
+            <div class="row row-cols-3">
+              <div class="col" *ngFor="let foto of fotos">
+                <img class="img-thumbnail" width="80px" height="80px"
+                  src="{{ foto }}" />
+                </div>
+            </div>
           </div>
         </div>
-        <div class="col2">
-          <form [formGroup]="pagoForm" (ngSubmit)="confirmarPago()">
-            <label>Total a pagar <strong>{{precio}}$</strong></label>
-            <br>
-            <label>Card Number</label>
-            <input
-              formControlName="cardNumber"
-              class="number"
-              type="text"
-              ng-model="ncard"
-              maxlength="19"
-              onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-            />
-            <span
-              class="text-danger"
-              *ngIf="
-                pagoForm.get('cardNumber')?.hasError('required') &&
-                pagoForm.get('cardNumber')?.touched
-              "
-              >El numero <strong>es Requerido</strong></span
-            >
-            <label>Cardholder name</label>
-            <input
-              formControlName="cardHolderName"
-              class="inputname"
-              type="text"
-              placeholder=""
-            />
-            <span
-              class="text-danger"
-              *ngIf="
-                pagoForm.get('cardHolderName')?.hasError('required') &&
-                pagoForm.get('cardHolderName')?.touched
-              "
-              >El Card Holder <strong>es Requerido</strong></span
-            >
-            <label>Expiry date</label>
-            <input
-              formControlName="cardExpireDate"
-              class="expire"
-              type="text"
-              placeholder="MM / YYYY"
-            />
-            <span
-              class="text-danger"
-              *ngIf="
-                pagoForm.get('cardExpireDate')?.hasError('required') &&
-                pagoForm.get('cardExpireDate')?.touched
-              "
-              >La fecha de expiracion <strong>es Requerido</strong></span
-            >
-            <label>Security Number</label>
-            <input
-              formControlName="cardSecurityNumbre"
-              class="ccv"
-              type="text"
-              placeholder="CVC"
-              maxlength="3"
-              onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-            />
-            <span
-              class="text-danger"
-              *ngIf="
-                pagoForm.get('cardSecurityNumbre')?.hasError('required') &&
-                pagoForm.get('cardSecurityNumbre')?.touched
-              "
-              >El CVC <strong>es Requerido</strong></span
-            >
-            <label class="checkContainer">-----Envio
-              <input type="checkbox" (change)="onCheckboxChange($event)" >
-              <span class="checkmark"></span>
-            </label>
-            <div class="form-control" *ngIf="envio">
-              <label>Direccion</label>
-              <input
-                formControlName="direccion"
-                class="inputname"
-                type="text"
-                placeholder=""
-              />
-              
-              <label>Telefono</label>
-              <input
-                formControlName="telefono"
-                class="inputname"
-                type="text"
-                placeholder=""
-              />
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          Pago con Tarjeta
+        </div>
+        <div class="card-body">
+          <form [formGroup]="pagoForm" (ngSubmit)="confirmarPago()" class="credit-card-div mt-2">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+
+                <div class="row ">
+                  <div class="col-md-12">
+                    <input formControlName="cardNumber" type="text" class="form-control" placeholder="Enter Card Number" />
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                    <span class="help-block text-muted small-font"> Expiry Month/Year</span>
+                    <input  formControlName="cardExpireDate" type="text" class="form-control" placeholder="MM/YY" />
+                  </div>
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                    <span class="help-block text-muted small-font"> CCV</span>
+                    <input formControlName="cardSecurityNumbre" type="text" class="form-control" placeholder="CCV" />
+                  </div>
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col-md-12 pad-adjust">
+
+                    <input formControlName="cardHolderName" type="text" class="form-control" placeholder="Name On The Card" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 pad-adjust">
+                    <label class="checkContainer">Envio
+                      <input type="checkbox" (change)="onCheckboxChange($event)" >
+                      <span class="checkmark"></span>
+                    </label>
+                    <div class="form-control" *ngIf="envio">
+                      <label>Direccion</label>
+                      <input
+                        formControlName="direccion"
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                      />
+
+                      <label>Telefono</label>
+                      <input
+                        formControlName="telefono"
+                        class="form-control"
+                        type="text"
+                        placeholder=""
+                      />
+                    </div>
+                    <label>Total a pagar <strong>{{precio}}$</strong></label>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                    <!-- <input type="submit" class="btn btn-danger" value="CANCEL" /> -->
+                    <a [routerLink]="['/dashboard']"  class="btn btn-danger btn-block">Cancel</a>
+                  </div>
+                  <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                    <input type="submit" class="btn btn-warning btn-block" value="PAY NOW" />
+                  </div>
+                </div>
+
+              </div>
             </div>
-           
-            <button type="submit" class="buy">
-              <i class="fa-solid fa-money-check-dollar"></i> Comprar
-            </button>
-            
           </form>
+
         </div>
       </div>
     </div>

@@ -15,18 +15,19 @@ export class RegisterComponent implements OnInit {
   usuario!: Usuario;
   public file: any = {};
   loading = false;
-  constructor(private userService: UserService, private router: Router, private storage: Storage, private zone: NgZone,private toastr: ToastrService) {
+  constructor(private userService: UserService, private router: Router, private storage: Storage, private zone: NgZone, private toastr: ToastrService) {
     this.formReg = new FormGroup({
       nombre: new FormControl(),
       telefono: new FormControl(),
       email: new FormControl(),
       password: new FormControl(),
+      rol: new FormControl(),
     })
   }
   onSubmit(url: any) {
     this.userService.registerUsuarioFireAuth(this.formReg.value)
       .then(response => {
-        this.userService.registerUsuarioFireStore(this.formReg.value, response.user.uid, url,this.file)
+        this.userService.registerUsuarioFireStore(this.formReg.value, response.user.uid, url, this.file)
         this.zone.run(() => {
           this.toastr.success('Register', 'Ha Registrado Correctamente')
           this.router.navigate(['/login']);
@@ -42,6 +43,9 @@ export class RegisterComponent implements OnInit {
     this.file = event.target.files[0];
   }
   addData() {
+    // console.log(this.formReg.value);
+
+    // this.userService.registerUsuarioFireStore(this.formReg.value, 'UUIDasdasdgadsgasd', 'URLasdfasdfasdfsadf', this.file)
     this.loading = true;
     const storageRef = ref(this.storage, `avatares/${this.file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, this.file);
@@ -55,7 +59,7 @@ export class RegisterComponent implements OnInit {
     },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downLoadURL) => {
-          // console.log('File available at', downLoadURL);
+          console.log('File available at', downLoadURL);
           this.onSubmit(downLoadURL);
         })
       }

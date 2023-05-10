@@ -17,4 +17,5 @@ export interface Usuario {
     ventas?: Venta[];
     disponible?: boolean;
     phoneToken?:string;
+    rol?:string;
 }

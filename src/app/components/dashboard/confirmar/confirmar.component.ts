@@ -32,7 +32,7 @@ export class ConfirmarComponent implements OnInit {
       direccion:[''],
       telefono:[''],
     })
-   
+
   }
 
   ngOnInit(): void {
@@ -40,12 +40,14 @@ export class ConfirmarComponent implements OnInit {
       this.fotos = response.photos;
       this.precio = this.fotos.length;
     })
-    this.uid = this.route.snapshot.paramMap.get('id') || ''; 
+    this.uid = this.route.snapshot.paramMap.get('id') || '';
     this.usuario = JSON.parse(localStorage.getItem("uid")!);
   }
   confirmarPago(){
     const today = new Date();
     const now = today.toLocaleString();
+    // console.log(this.pagoForm);
+
     if (this.pagoForm.valid) {
       const data = [{
         precio:this.precio,
@@ -59,7 +61,7 @@ export class ConfirmarComponent implements OnInit {
       this.pagos.pagarFotografo(this.uid,data,this.fotos)
     } else {
       this.toastr.error('Suscripcion', 'Tarjeta rechazada, Revise sus datos de la tarjeta!');
-    }   
+    }
   }
   onCheckboxChange(event: any){
     if (event.target.checked) {
@@ -68,7 +70,7 @@ export class ConfirmarComponent implements OnInit {
     }else{
       this.precio = this.fotos.length;
       this.envio = false;
-    }    
+    }
   }
 
 }
