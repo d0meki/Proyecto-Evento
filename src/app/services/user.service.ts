@@ -75,6 +75,8 @@ export class UserService {
     this.myApi.registrarCara(this.userFirebase.nombre!, file).subscribe(response => {
       this.regFace = response as RegisterFace;
       this.userFirebase.uuid = this.regFace.body.uuid;
+      console.log(this.userFirebase.uuid);
+      console.log(uid);
       const refDoc = doc(this.firestore, `usuarios/${uid}`)
       return setDoc(refDoc, this.userFirebase);
     })
