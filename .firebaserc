@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "prueba-438c5"
-  }
+    "default": "sw1-p2",
+    "sw1": "sw1-p2"
+  },
+  "targets": {},
+  "etags": {}
 }

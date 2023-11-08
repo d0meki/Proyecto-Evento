@@ -5,12 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyCyZzew4sYtfBLWeinA3Fp0FgoHg8bPCfw",
-    authDomain: "prueba-438c5.firebaseapp.com",
-    projectId: "prueba-438c5",
-    storageBucket: "prueba-438c5.appspot.com",
-    messagingSenderId: "318837877708",
-    appId: "1:318837877708:web:ec9197025a620cebab4b69"
+    projectId: 'sw1-p2',
+    appId: '1:942800220603:web:e2c1f5904dbdc81222149e',
+    storageBucket: 'sw1-p2.appspot.com',
+    locationId: 'southamerica-east1',
+    apiKey: 'AIzaSyCc4LgbgEeZClmqer2BDK46rlNiV-SBBlg',
+    authDomain: 'sw1-p2.firebaseapp.com',
+    messagingSenderId: '942800220603',
   }
 };
 

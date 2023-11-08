@@ -25,6 +25,7 @@ import { SharedModule } from './components/shared/shared.module';
 
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
+    provideMessaging(() => getMessaging())
   ],
   providers: [
 
