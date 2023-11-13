@@ -39,15 +39,17 @@ export class ListEventosComponent implements OnInit {
 
   newEvento() {
     //api de google para generar QR
-    //https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl= 
+    //https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=
   }
 
   ngOnInit(): void {
      this.usuario = JSON.parse(localStorage.getItem("uid")!);
+     console.log(this.usuario);
+
     // this.eventService.getTodosLosEventos().then(response => {
     //   this.eventos = response!;
     //   console.log(this.eventos);
-      
+
     // })
     // .catch(error => console.log(error));
     this.eventService.getIAllEventos().subscribe(response=>{

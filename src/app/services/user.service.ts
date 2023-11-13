@@ -36,7 +36,7 @@ export class UserService {
   registerUsuarioFireAuth(authUser: AuthUser) {
     return createUserWithEmailAndPassword(this.auth, authUser.email, authUser.password);
   }
-  registerUsuarioFireStore(usuario: Usuario, uid: any, urlavatar: any, file: any) {
+  registerUsuarioFireStore(usuario: Usuario, uid: any, urlavatar: any, file: any): Promise<any> {
     this.userFirebase = usuario;
     this.userFirebase.avatar = urlavatar;
     this.userFirebase.fotos = [];
@@ -72,14 +72,18 @@ export class UserService {
 
 
     //AQUI REGISTRAMOS LA CARA EN EL LUXAND
-    this.myApi.registrarCara(this.userFirebase.nombre!, file).subscribe(response => {
+    /* this.myApi.registrarCara(this.userFirebase.nombre!, file).subscribe(response => {
       this.regFace = response as RegisterFace;
       this.userFirebase.uuid = this.regFace.body.uuid;
       console.log(this.userFirebase.uuid);
       console.log(uid);
       const refDoc = doc(this.firestore, `usuarios/${uid}`)
       return setDoc(refDoc, this.userFirebase);
-    })
+    }) */
+    //? PARA QUE REGISTRE MOMENTANEAMENTE SIN LUXAND
+    this.userFirebase.uuid = "noUUID";
+    const refDoc = doc(this.firestore, `usuarios/${uid}`)
+    return setDoc(refDoc, this.userFirebase);
   }
 
   login({ email, password }: any) {
