@@ -20,7 +20,8 @@
   <div *ngIf="usuario.cliente" class="container text-center mt-5 mb-3">
     <div class="row">
       <div class="col">
-        <button class="btn btn-warning" disabled><i style="color: white;" class="fa-solid fa-cart-shopping"><span> {{carrito.length}}
+        <button class="btn btn-warning" disabled><i style="color: white;" class="fa-solid fa-cart-shopping"><span>
+              {{carrito.length}}
             </span></i></button>
       </div>
       <div class="col">
@@ -32,18 +33,13 @@
     </div>
   </div>
   <div class="linea"></div>
-  <div *ngFor="let foto of fotos" class="galeria">
+  <div *ngFor="let foto of fotos" class="galeria" style="text-align: center;">
+    <button *ngIf="usuario.cliente" class="btn btn-info mt-2" (click)="agregarAlCarrito(foto)"> Añadir al carrito <i
+        class="fa-solid fa-cart-shopping"></i></button>
     <div class="foto">
       <img src="{{foto}}" alt="">
-    </div>
-    <div class="pie">
-      <p>5bs</p>
-      <button *ngIf="usuario.cliente" class="btn btn-info mt-2" (click)="agregarAlCarrito(foto)"> Añadir al carrito <i
-          class="fa-solid fa-cart-shopping"></i></button>
+      <div class="pie">
+      </div>
     </div>
   </div>
-
-
-
-
 </div>

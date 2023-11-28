@@ -66,6 +66,11 @@ export class UserService {
       default:
         break;
     }
+    this.userFirebase.cliente = true;
+    this.userFirebase.fotografo = false;
+    this.userFirebase.organizador = false;
+    this.userFirebase.adm = false;
+    this.userFirebase.disponible = false;
     this.userFirebase.phoneToken = "noToken";
 
     // console.log(this.userFirebase);
