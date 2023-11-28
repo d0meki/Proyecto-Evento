@@ -5,17 +5,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MyapiService {
-  // private apiUrl = "https://rest-server-domeki.herokuapp.com/api/luxand"
-  // private apiFace = "https://rest-server-domeki.herokuapp.com/api/luxand/createface"
-  // private apiNotifier = "https://rest-server-domeki.herokuapp.com/api/luxand/notification"
+  private apiUrl =      "https://luxand-service.onrender.com/api/luxand"
+  private apiFace =     "https://luxand-service.onrender.com/api/luxand/createface"
+  private apiNotifier = "https://luxand-service.onrender.com/api/luxand/notification"
 
-  private apiUrl = "http://localhost:8050/api/luxand"
+/*   private apiUrl = "http://localhost:8050/api/luxand"
   private apiFace = "http://localhost:8050/api/luxand/createface"
   private apiNotifier = "http://localhost:8050/api/luxand/notification"
-
-/*   private apiUrl = "https://luxandservice-production.up.railway.app/api/luxand"
-  private apiFace = "https://luxandservice-production.up.railway.app/api/luxand/createface"
-  private apiNotifier = "https://luxandservice-production.up.railway.app/api/luxand/notification" */
+ */
   constructor(private http: HttpClient) { }
 
   reconocimientoFoto(url: any) {
