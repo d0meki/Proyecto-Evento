@@ -36,7 +36,7 @@ export class UserService {
   registerUsuarioFireAuth(authUser: AuthUser) {
     return createUserWithEmailAndPassword(this.auth, authUser.email, authUser.password);
   }
-  registerUsuarioFireStore(usuario: Usuario, uid: any, urlavatar: any, file: any): Promise<any> {
+  registerUsuarioFireStore(usuario: Usuario, uid: any, urlavatar: any, file: any) {
     this.userFirebase = usuario;
     this.userFirebase.avatar = urlavatar;
     this.userFirebase.fotos = [];
@@ -72,18 +72,18 @@ export class UserService {
 
 
     //AQUI REGISTRAMOS LA CARA EN EL LUXAND
-    /* this.myApi.registrarCara(this.userFirebase.nombre!, file).subscribe(response => {
+    this.myApi.registrarCara(this.userFirebase.nombre!, file).subscribe(response => {
       this.regFace = response as RegisterFace;
       this.userFirebase.uuid = this.regFace.body.uuid;
       console.log(this.userFirebase.uuid);
       console.log(uid);
       const refDoc = doc(this.firestore, `usuarios/${uid}`)
       return setDoc(refDoc, this.userFirebase);
-    }) */
+    })
     //? PARA QUE REGISTRE MOMENTANEAMENTE SIN LUXAND
-    this.userFirebase.uuid = "noUUID";
+   /*  this.userFirebase.uuid = "noUUID";
     const refDoc = doc(this.firestore, `usuarios/${uid}`)
-    return setDoc(refDoc, this.userFirebase);
+    return setDoc(refDoc, this.userFirebase); */
   }
 
   login({ email, password }: any) {
@@ -103,11 +103,12 @@ export class UserService {
         cliente: response.cliente,
         organizador: response.organizador,
         adm: response.adm,
-        fotografo: response.fotografo
+        fotografo: response.fotografo,
+        telefono: response.telefono
       };
       const usuarioString = JSON.stringify(this.usuario)
       localStorage.setItem("uid", usuarioString);
-      this.router.navigate(['dashboard/eventos']);
+      this.router.navigate(['dashboard/profile']);
     }).catch(error => {
       console.log(error);
     });

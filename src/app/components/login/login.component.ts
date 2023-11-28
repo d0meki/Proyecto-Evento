@@ -27,12 +27,12 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     this.userService.login(this.formLogin.value)
-       
+
       .then(response => {
         this.userService.grabar_data_user_localStorage(response.user.uid);
-        this.toastr.success('Login', 'Ha iniciado sesion Correctamente');
+        // this.toastr.success('Login', 'Ha iniciado sesion Correctamente');
       })
-      .catch(error =>{ 
+      .catch(error =>{
         this.loading = false;
         this.toastr.error('Login', 'Ha ocurrido un error, revise sus credenciales');
         console.log(error)});
