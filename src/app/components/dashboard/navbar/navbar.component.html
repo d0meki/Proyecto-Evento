@@ -1,44 +1,38 @@
-<nav class="navbar navbar-expand-lg bg-dark scrolling-navbar fixed-top">
+<nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['/dashboard/profile']">
-      <img  src="assets/camera.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+    <a class="navbar-brand" href="#">
+      <img src="assets/photo.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
     </a>
-    <a class="navbar-brand" [routerLink]="['/dashboard/profile']" >{{usuario.nombre}}</a>
-    <a class="navbar-brand" [routerLink]="['/dashboard/profile']" *ngIf="usuario.cliente"> Cliente</a>
-    <a class="navbar-brand" [routerLink]="['/dashboard/profile']" *ngIf="usuario.adm"> Administrador</a>
-    <a class="navbar-brand" [routerLink]="['/dashboard/profile']" *ngIf="usuario.organizador"> Organizador</a>
-    <a class="navbar-brand" [routerLink]="['/dashboard/profile']" *ngIf="usuario?.fotografo"> Fotografo</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" [routerLink]="['/dashboard/profile']">{{usuario.nombre}}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="['/dashboard']" style="color:white" >Home</a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li *ngIf="usuario.cliente" class="nav-item">
+          <a class="nav-link" [routerLink]="['/dashboard/myphotos']">Fotos <i class="fa-solid fa-images"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="['/dashboard/myphotos']" style="color:white" >Mis Fotos</a>
+          <a class="nav-link" [routerLink]="['/dashboard/eventos']">Eventos <i class="fa-solid fa-champagne-glasses"></i></a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="['/dashboard/pago-fotografo',5]"  style="color:white" *ngIf="usuario?.cliente">Eres Fotografo?</a>
-        </li> -->
-        <!-- <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="['/dashboard/pago-organizador',10]" style="color:white"  *ngIf="usuario?.cliente">Organiza tus Eventos!!</a>
-        </li> -->
+        <li *ngIf="usuario.cliente" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Suscripcion
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" style="color: black;" [routerLink]="['/dashboard/pago-fotografo',5]">Fotografo <i class="fa-solid fa-camera-retro"></i></a></li>
+            <li><a class="dropdown-item" style="color: black;" [routerLink]="['/dashboard/pago-organizador',10]">Organizador de Eventos <i class="fa-solid fa-wand-magic-sparkles"></i></a></li>
+          </ul>
+        </li>
       </ul>
-      <!-- <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;" *ngIf="usuario?.fotografo">
-        <li class="nav-item">
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Dsiponible</label>
-          </div>
-        </li>
-      </ul> -->
-      <!-- <button class="btn btn-outline-danger" (click)="onClick()" ><i class="fa-solid fa-power-off"></i> Salir</button> -->
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-secondary" (click)="onClick()" style="color:white">Salir</button>
-      </form>
     </div>
+    <span *ngIf="usuario.cliente" class="norainbowText"><i class="fa-regular fa-circle-user"></i> Cliente</span>
+    <span *ngIf="usuario.fotografo" class="rainbowText"><i class="fa-solid fa-camera-retro"></i> Fotografo</span>
+    <span *ngIf="usuario.organizador" class="rainbowText"><i class="fa-solid fa-icons"></i> Organizador</span>
+    <span class="navbar-text">
+      <button class="btn btn-danger mx-5" (click)="onClick()" style="color:white"><i
+          class="fa-solid fa-right-from-bracket"></i> Salir</button>
+    </span>
   </div>
 </nav>

@@ -1,45 +1,32 @@
-<div class="card position-absolute top-50 start-50 translate-middle text-center" style="width: 24rem;">
-  <div class="card-header">Profile</div>
-  <div class="card-body">
-    <h5 class="card-title">Bienvenido</h5>
-    <p class="card-text">
-      Gestiona tu información, la privacidad y la seguridad para mejorar tu experiencia.
-    </p>
-    <div class="our-team">
-      <div class="picture" >
-        <img class="img-fluid" src="{{usuario.avatar}}" />
-      </div>
-      <div class="team-content">
-        <h3 class="name">{{usuario.nombre}}</h3>
-        <h4 class="title">{{usuario.email}}</h4>
-      </div>
-      <ul class="social">
-        <li>
-          <a
-            class="fa-brands fa-square-facebook"
-            aria-hidden="true"
-          ></a>
-        </li>
-        <li>
-          <a
-            class="fa-brands fa-square-twitter"
-            aria-hidden="true"
-          ></a>
-        </li>
-        <li>
-          <a
-            class="fa-brands fa-square-google-plus"
-            aria-hidden="true"
-          ></a>
-        </li>
-        <li>
-          <a
-            class="fa-brands fa-linkedin"
-            aria-hidden="true"
-          ></a>
-        </li>
-      </ul>
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+  <div class="card p-4">
+    <div class="card-header" style="text-align: center;">
+      <h4>Perfil</h4>
+    </div>
+    <div class=" image d-flex flex-column justify-content-center align-items-center">
+      <button class="btn btn-secondary mt-2"> <img src="{{usuario.avatar}}" height="100" width="100" /></button>
+      <span class="name mt-3">{{usuario.nombre}}</span>
+      <span class="idd mt-2 mb-2">{{usuario.email}}</span>
+    </div>
+    <ul class="list-group mt-2">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Twiter <i class="fa-brands fa-square-twitter"></i>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Facebook <i class="fa-brands fa-square-facebook"></i>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Google <i class="fa-brands fa-square-google-plus"></i>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Linkedin <i class="fa-brands fa-linkedin"></i>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Whatsapp {{usuario.telefono}} <i class="fa-brands fa-square-whatsapp"></i>
+      </li>
+    </ul>
+    <div class="card-footer" style="text-align: center;">
+      Joined May,2023
     </div>
   </div>
-  <div class="card-footer text-muted">2 days ago</div>
 </div>

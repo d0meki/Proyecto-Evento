@@ -80,6 +80,10 @@ export class UserService {
       const refDoc = doc(this.firestore, `usuarios/${uid}`)
       return setDoc(refDoc, this.userFirebase);
     })
+    //? PARA QUE REGISTRE MOMENTANEAMENTE SIN LUXAND
+   /*  this.userFirebase.uuid = "noUUID";
+    const refDoc = doc(this.firestore, `usuarios/${uid}`)
+    return setDoc(refDoc, this.userFirebase); */
   }
 
   login({ email, password }: any) {
@@ -99,11 +103,12 @@ export class UserService {
         cliente: response.cliente,
         organizador: response.organizador,
         adm: response.adm,
-        fotografo: response.fotografo
+        fotografo: response.fotografo,
+        telefono: response.telefono
       };
       const usuarioString = JSON.stringify(this.usuario)
       localStorage.setItem("uid", usuarioString);
-      this.router.navigate(['dashboard/eventos']);
+      this.router.navigate(['dashboard/profile']);
     }).catch(error => {
       console.log(error);
     });

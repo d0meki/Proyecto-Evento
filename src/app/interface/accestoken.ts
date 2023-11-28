@@ -9,4 +9,5 @@ export interface AccesToken {
     fotografo?: boolean;
     disponible?: boolean;
     fotos?: string[];
+    telefono?: string;
 }

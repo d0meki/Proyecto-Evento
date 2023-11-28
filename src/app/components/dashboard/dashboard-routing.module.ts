@@ -13,7 +13,7 @@ import { ConfirmarComponent } from './confirmar/confirmar.component';
 const routes: Routes = [
   {
     path : 'dashboard', component:DashboardComponent, children:[
-      { path: '', redirectTo: 'eventos', pathMatch: 'full' },
+      { path: '', redirectTo: 'profile', pathMatch: 'full' },
       { path: 'eventos', component: ListEventosComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'myphotos', component: MyphotosComponent },
@@ -22,7 +22,7 @@ const routes: Routes = [
       { path: 'pago-fotografo/:precio', component: PagophotographerComponent },
       { path: 'pago-organizador/:precio', component: PagoorganizerComponent },
       { path: 'confirmar/:id', component: ConfirmarComponent },
-      { path: '**', redirectTo: 'eventos', pathMatch: 'full' },   
+      { path: '**', redirectTo: 'profile', pathMatch: 'full' },
     ]
   },
 ];
